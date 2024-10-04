@@ -21,9 +21,6 @@ function App() {
     <div>
       <h1>Hello World</h1>
 
-      {data.mem.map((item, index) => (
-        <p key={index}>{item}</p>
-      ))}
     </div>
   );
 }
