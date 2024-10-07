@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import FileUpload from './components/FileUpload';
+import LoginPage from './components/LoginPage/LoginPage'; 
 
 function App() {
 
@@ -19,12 +20,8 @@ function App() {
   }, [])
 
   return (
-    <div>
-      <h1>Hello World</h1>
-      <div className="App">
-        <h1>File Upload</h1>
-        <FileUpload />
-      </div>
+    <div className="App">
+      <LoginPage />
     </div>
   );
 }
