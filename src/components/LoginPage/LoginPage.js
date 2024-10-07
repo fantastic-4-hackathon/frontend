@@ -37,10 +37,11 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       {/* Company Logo */}
-      <img
-        src="logo.jpg"
-        alt="Company Logo"
-        className="company-logo"
+
+      <img 
+        src={require('./logo.png')} 
+        alt="Company Logo" 
+        className="company-logo" 
       />
 
       {/* Login Container */}
