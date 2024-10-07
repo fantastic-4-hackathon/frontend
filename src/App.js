@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import FileUpload from './components/FileUpload';
 import LoginPage from './components/LoginPage/LoginPage'; 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
       res => res.json()
     ).then(
       data => {
-        setData(data) 
+        setData(data)
         console.log(data)
       }
     )
