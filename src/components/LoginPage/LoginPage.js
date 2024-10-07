@@ -6,7 +6,7 @@ const LoginPage = () => {
     <div className="login-page">
       {/* Company Logo */}
       <img 
-        src="logo.jpg" 
+        src={require('./logo.png')} 
         alt="Company Logo" 
         className="company-logo" 
       />
