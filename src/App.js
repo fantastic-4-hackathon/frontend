@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import LoginPage from './components/LoginPage/LoginPage'; 
 
 function App() {
 
@@ -18,12 +19,8 @@ function App() {
   }, [])
 
   return (
-    <div>
-      <h1>Hello World</h1>
-
-      {data.mem.map((item, index) => (
-        <p key={index}>{item}</p>
-      ))}
+    <div className="App">
+      <LoginPage />
     </div>
   );
 }
