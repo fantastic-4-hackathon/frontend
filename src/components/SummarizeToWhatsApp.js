@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { fetchSummary } from '../API/fetchSummary'; // Adjust the import path as necessary
+import './SummarizeToWhatsapp.css'
 
 const SummarizeToWhatsApp = () => {
     const [prompt, setPrompt] = useState('');
@@ -19,7 +20,7 @@ const SummarizeToWhatsApp = () => {
     };
 
     return (
-        <div>
+        <div className="summarize-container">
             <h1>Summarize for WhatsApp</h1>
             <form onSubmit={handleSubmit}>
                 <textarea
@@ -38,7 +39,7 @@ const SummarizeToWhatsApp = () => {
                 </div>
             )}
         </div>
-    );
+    );    
 };
 
 export default SummarizeToWhatsApp;

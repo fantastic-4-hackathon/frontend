@@ -1,28 +1,35 @@
 import React from 'react';
+import Header from './components/UploadPage/Header';
+import FileUpload from './components/UploadPage/FileUpload';
+import Footer from './components/UploadPage/Footer';
 import './App.css';
-import FileUpload from './components/FileUpload';
 import LoginPage from './components/LoginPage/LoginPage';
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 // import ProtectedRoute from './components/ProtectedRoute';
-import SummarizeToWhatsapp from './components/SummarizeToWhatsApp';  // Import the component
+import SummarizeToWhatsApp from './components/SummarizeToWhatsApp';
+
+const About = () => <h2>About Page</h2>;
+const Contact = () => <h2>Contact Page</h2>;
 
 function App() {
 
   return (
-    <div className="App">
-      <LoginPage />
-      <h1>File Upload</h1>
-      <FileUpload />
-      <h1>My Summarization App</h1>
-      <SummarizeToWhatsapp /> {/* Use the component */}
-    </div>
-    // Route switching in future with protected routes
-    // <Router>
-    //   <Switch>
-    //     <Route path="/login" component={Login} />
-    //     <ProtectedRoute path="/dashboard" component={Dashboard} />
-    //   </Switch>
-    // </Router>
+    <Router>
+      <div className='App'>
+        <Header />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<FileUpload />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="*" element={<h2>404 Not Found</h2>} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
