@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Header from './components/UploadPage/Header';
 import FileUpload from './components/UploadPage/FileUpload';
 import Footer from './components/UploadPage/Footer';
@@ -8,7 +8,6 @@ import LoginPage from './components/LoginPage/LoginPage';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 // import ProtectedRoute from './components/ProtectedRoute';
 import SummarizeToWhatsApp from './components/SummarizeToWhatsApp';
-
 
 const About = () => <h2>About Page</h2>;
 const Contact = () => <h2>Contact Page</h2>;
