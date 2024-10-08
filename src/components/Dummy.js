@@ -2,6 +2,7 @@ import React, { useState   } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchSummary} from '../API/fetchSummary'
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 const Dummy = () => {
     const location = useLocation();
@@ -15,7 +16,7 @@ const Dummy = () => {
     const prompt = text;
 
     const handleFetchSummary = async () => {
-        const apiKey = 'YOUR_API_KEY'; // Replace with your actual API key
+        const apiKey = process.env.REACT_APP_OPENAI_API_KEY_1; // Replace with your actual API key
     
         try {
             const result = await fetchSummary(prompt, apiKey);
