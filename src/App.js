@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import FileUpload from './components/FileUpload';
 import LoginPage from './components/LoginPage/LoginPage';
@@ -7,20 +7,6 @@ import LoginPage from './components/LoginPage/LoginPage';
 import SummarizeToWhatsapp from './components/SummarizeToWhatsApp';  // Import the component
 
 function App() {
-
-  const [data, setData] = useState({});
-
-
-  useEffect(() => {
-    fetch("/mem").then(
-      res => res.json()
-    ).then(
-      data => {
-        setData(data)
-        console.log(data)
-      }
-    )
-  }, [])
 
   return (
     <div className="App">
