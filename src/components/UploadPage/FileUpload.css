@@ -1,0 +1,68 @@
+.file-upload-container {
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.file-upload-box {
+  border: 2px dashed #ccc;
+  padding: 40px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+}
+
+.file-upload-box.disabled {
+  background-color: #e0e0e0;
+  pointer-events: none; /* Disable clicks */
+}
+
+.file-upload-label {
+  cursor: pointer;
+  color: #007bff;
+}
+
+.file-upload-label span {
+  text-decoration: underline;
+}
+
+.file-preview {
+  margin-top: 20px;
+}
+
+.extract-text-button {
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.extract-text-button:hover {
+  background-color: #0056b3;
+}
+
+.file-upload-container {
+  border: 2px dashed #007bff; /* Sanlam blue */
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.file-upload-container:hover {
+  background-color: #f0f8ff; /* Light blue on hover */
+}
+
+.file-upload-label {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.file-upload-container.dragging {
+  background-color: #f0f8ff; /* Change color when dragging */
+}

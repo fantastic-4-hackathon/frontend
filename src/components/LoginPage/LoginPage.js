@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './LoginPage.css'; // Import the CSS for styling
 import axios from 'axios';
+import logo from './logo.png';
+
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -30,6 +32,7 @@ const LoginPage = () => {
         }
       });
     } catch (err) {
+      console.error(err);
       setError('Invalid username or password');
     }
   };
@@ -39,7 +42,7 @@ const LoginPage = () => {
       {/* Company Logo */}
 
       <img 
-        src={require('./logo.png')} 
+        src={logo} 
         alt="Company Logo" 
         className="company-logo" 
       />
