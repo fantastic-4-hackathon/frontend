@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Header from './components/UploadPage/Header';
+import FileUpload from './components/UploadPage/FileUpload';
+import Footer from './components/UploadPage/Footer';
 import './App.css';
-import FileUpload from './components/FileUpload';
 import LoginPage from './components/LoginPage/LoginPage';
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import ProtectedRoute from './components/ProtectedRoute';
-import SummarizeToWhatsapp from './components/SummarizeToWhatsApp';  // Import the component
+import SummarizeToWhatsApp from './components/SummarizeToWhatsApp';
 
 function App() {
 
@@ -24,19 +26,26 @@ function App() {
 
   return (
     <div className="App">
-      <LoginPage />
-      <h1>File Upload</h1>
-      <FileUpload />
-      <h1>My Summarization App</h1>
-      <SummarizeToWhatsapp /> {/* Use the component */}
+      <Header />
+      <main className="main-content">
+        <h1>Marketing Generator</h1>
+        <FileUpload />
+      </main>
+      <Footer />
     </div>
-    // Route switching in future with protected routes
-    // <Router>
-    //   <Switch>
-    //     <Route path="/login" component={Login} />
-    //     <ProtectedRoute path="/dashboard" component={Dashboard} />
-    //   </Switch>
-    // </Router>
+
+    // <div className="App">
+    //   <LoginPage />
+    // </div>
+
+
+    // <div className="App">
+    //   <Header />
+    //   <main className="main-content">
+    //     <SummarizeToWhatsApp />
+    //   </main>
+    //   <Footer />
+    // </div>
   );
 }
 

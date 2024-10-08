@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './SummarizeToWhatsapp.css'
 
 // This function simulates the summarize_to_whatsapp function from Python
 const SummarizeToWhatsApp = () => {
@@ -40,7 +41,7 @@ const SummarizeToWhatsApp = () => {
     };
 
     return (
-        <div>
+        <div className="summarize-container">
             <h1>Summarize for WhatsApp</h1>
             <form onSubmit={handleSubmit}>
                 <textarea
@@ -59,7 +60,7 @@ const SummarizeToWhatsApp = () => {
                 </div>
             )}
         </div>
-    );
+    );    
 };
 
 export default SummarizeToWhatsApp;

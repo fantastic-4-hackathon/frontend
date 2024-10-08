@@ -1,0 +1,89 @@
+/* general page styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+}
+
+.main-content {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5; /* Light grey to separate the content */
+}
+
+/* SummarizeToWhatsApp Component Styling */
+.summarize-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    text-align: center;
+}
+
+.summarize-container h1 {
+    font-size: 24px;
+    color: #2e3a59; /* Dark corporate blue */
+    margin-bottom: 20px;
+}
+
+.summarize-container textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    resize: none;
+}
+
+.summarize-container button {
+    background-color: #007bff; /* Corporate blue */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.summarize-container button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.summarize-container h2 {
+    font-size: 20px;
+    color: #2e3a59;
+    margin-top: 20px;
+}
+
+.summarize-container p {
+    background-color: #f1f1f1;
+    border-left: 5px solid #007bff;
+    padding: 15px;
+    font-style: italic;
+    border-radius: 4px;
+}
+
+/* Footer & Header */
+footer, header {
+    padding: 10px;
+    background-color: #2e3a59; /* Dark blue */
+    color: white;
+    text-align: center;
+}
+
+footer a, header a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover, header a:hover {
+    text-decoration: underline;
+}
