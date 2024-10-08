@@ -1,4 +1,3 @@
-// fetchSummary.js
 const DEFAULT_TEMPERATURE = 0.7; // Hardcoded temperature
 
 export const fetchSummary = async (prompt, apiKey) => {
@@ -23,8 +22,21 @@ export const fetchSummary = async (prompt, apiKey) => {
 
     try {
         const response = await fetch('https://api.openai.com/v1/chat/completions', requestOptions);
+        
+        if (!response.ok) {
+            // Handle response errors (e.g., 4xx, 5xx)
+            const errorData = await response.json();
+            throw new Error(errorData.error?.message || 'Failed to fetch summary');
+        }
+        
         const data = await response.json();
-        return data.choices[0].message.content;
+        
+        // Check if choices is defined and has at least one item
+        if (data.choices && data.choices.length > 0) {
+            return data.choices[0].message.content;
+        } else {
+            throw new Error('No summary available. Please try again.');
+        }
     } catch (error) {
         console.error('Error summarizing the text:', error);
         throw error; // Re-throw the error to handle it in the component

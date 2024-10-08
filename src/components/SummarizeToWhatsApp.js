@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { fetchSummary } from '../API/fetchSummary'; // Adjust the import path as necessary
+import { fetchSummary } from '../API/fetchSummary'; 
 import './SummarizeToWhatsapp.css'
 
 const SummarizeToWhatsApp = () => {
