@@ -1,20 +1,21 @@
 import React from 'react';
-import './Header.css'; // Import the styling for the header
+import './Header.css'; 
+import Avatar from './Avatar'; // Import the Avatar component
 
 const Header = () => {
+  const userName = "John"; // Replace with dynamic data as needed
+  const userSurname = "Doe"; // Replace with dynamic data as needed
+
   return (
     <header className="header">
       <div className="logo">
         <img src={require("./short-logo.png")} alt="Sanlam Logo" />
       </div>
       <nav className="nav">
-        <a href="#">Overview</a>
-        <a href="#">Manage</a>
-        <a href="#">Documents</a>
-        <a href="#">Contact us</a>
+        {/* Navigation items can be added here */}
       </nav>
       <div className="user-profile">
-        <img src="user-profile.png" alt="User Profile" />
+        <Avatar name={userName} surname={userSurname} /> {/* Include Avatar here */}
       </div>
     </header>
   );

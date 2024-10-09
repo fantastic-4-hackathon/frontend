@@ -1,78 +1,47 @@
-/* Sticky footer positioning */
-html, body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #f8f8f8;
-  padding: 20px 40px;
+  padding: 10px 20px; /* Reduced padding */
   border-top: 2px solid #e0e0e0;
-  position: sticky;
-  bottom: 0;
+  max-width: 1200px; /* Constrain max-width */
+  margin: 0 auto;
   width: 100%;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for effect */
-  z-index: 10;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Column sizes */
 .footer-column {
   text-align: center;
 }
 
-/* Adjust column sizes */
-.footer-left {
-  flex: 1; /* Smaller space for the logo */
-}
-
-.footer-center {
-  flex: 4; /* More space for the text */
-}
-
-.footer-right {
-  flex: 2; /* Moderate space for icons */
-}
-
-/* Style for the logo */
 .footer-left img {
-  width: 120px;
+  width: 100px; /* Slightly smaller logo */
 }
 
-/* Center column (copyright text) */
 .footer-center p {
-  font-size: 14px;
+  font-size: 12px; /* Adjust text size */
   color: #888888;
-  line-height: 1.5;
 }
 
-/* Social media icons */
 .footer-right a {
-  margin: 0 10px;
-  color: #007bff; /* Sanlam blue */
-  font-size: 24px;
+  margin: 0 8px;
+  color: #007bff;
+  font-size: 20px; /* Slightly smaller icons */
 }
 
 .footer-right a:hover {
-  color: #0056b3;
+  color: #0056b3; /* Darker blue on hover */
 }
 
 /* Vertical line between the columns */
 .vertical-line {
   width: 1px;
   background-color: #e0e0e0;
-  height: 60px;
-  margin: 0 20px;
+  height: 40px; /* Adjusted height */
+  margin: 0 15px;
 }
 
-/* Ensure the footer is at the bottom of the viewport on short pages */
-body > .footer {
-  margin-top: auto;
+body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
