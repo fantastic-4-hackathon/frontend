@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Dummy = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const { text, message } = location.state || {
         text: "No text provided",
         message: "No message provided",
@@ -19,9 +20,10 @@ const Dummy = () => {
         const apiKey = process.env.REACT_APP_OPENAI_API_KEY; 
     
         try {
-            const result = await fetchSummary(prompt, apiKey);
-            setSummary(result);
+            const sumText = await fetchSummary(prompt, apiKey);
+            setSummary(sumText);
             toast.success("Summary Generated");
+            navigate('/whatsapp', {state: sumText});
         } catch (error) {
             toast.error(error.message || 'Failed to fetch summary. Please try again.');
             console.error(error);
