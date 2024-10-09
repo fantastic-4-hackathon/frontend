@@ -182,7 +182,7 @@ const FileUpload = () => {
     setEducation('');
     setAge('');
     setPersona({});
-    setSelectedPersonaId()
+    setSelectedPersonaId("")
     setIsPersonaDisabled(false);
     setIsAgeEducationDisabled(false);
   };
