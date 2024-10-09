@@ -16,8 +16,8 @@ function App() {
       {!isLoginPage && <Header/>}
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<FileUpload />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/fileupload" element={<FileUpload />} />
           <Route path="/dummy" element={<Dummy />} />
           <Route path="/whatsapp" element={<WhatsAppMessage />} />
           <Route path="*" element={<h2>404 Not Found</h2>} />
