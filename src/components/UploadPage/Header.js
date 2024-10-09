@@ -1,17 +1,15 @@
 import React from 'react';
 import './Header.css'; 
 import Avatar from './Avatar'; // Import the Avatar component
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
-  const { name, surname, user_id } = location.state || {
+  const { name, surname } = location.state || {
     name: "No text provided",
     surname: "No message provided",
     user_id: "No user_id provided"
 };
-  const userName = "John"; // Replace with dynamic data as needed
-  const userSurname = "Doe"; // Replace with dynamic data as needed
 
   return (
     <header className="header">
