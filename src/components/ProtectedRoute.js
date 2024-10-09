@@ -1,20 +1,11 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-    const token = localStorage.getItem('token');
-    return (
-        <Route
-            {...rest}
-            render={(props) =>
-                token ? (
-                    <Component {...props} />
-                ) : (
-                    <Redirect to="/login" />
-                )
-            }
-        />
-    );
+const ProtectedRoute = ({ element: Component, ...rest }) => {
+    const token = sessionStorage.getItem('token');  // Using sessionStorage instead of localStorage (better security)
+
+    // If token exists, render the component, otherwise redirect to login
+    return token ? <Component {...rest} /> : <Navigate to="/" />;
 };
 
 export default ProtectedRoute;
