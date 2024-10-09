@@ -2,9 +2,19 @@ import React, { useState, useRef } from 'react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { extractText } from '../../API/extractText';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './FileUpload.css';
 
 const FileUpload = () => {
+  const location = useLocation();
+  const { name, surname, user_id } = location.state || {
+    name: "No text provided",
+    surname: "No message provided",
+    user_id: "No user_id provided"
+};
+
+
   // State for the dropdown selections
   const [education, setEducation] = useState('');
   const [age, setAge] = useState('');
@@ -24,6 +34,8 @@ const FileUpload = () => {
   // Toast notifications
   const notifySuccess = (message) => toast.success(message);
   const notifyError = (message) => toast.error(message);
+
+  const navigate = useNavigate();
 
   // Handle file selection
   const handleFileChange = (selectedFile) => {
@@ -71,16 +83,31 @@ const FileUpload = () => {
     handleFileChange(droppedFile);
   };
 
-  // Handle the extract text button
-  const handleExtractText = () => {
+  const handleExtractText = async () => {
     if (file) {
       console.log('Extracting text from:', file.name);
       toast.info(`Extracting text from ${file.name}`);
-    } else if (description.length >= 50) {
-      console.log('Extracting text from description');
-      toast.info(`Extracting text from description`);
+      
+      try {
+          const props = await extractText(file);
+          console.log(props.message);
+        
+//            if (description.length >= 50) {
+//               console.log('Extracting text from description');
+//               toast.info(`Extracting text from description`);
+//            }
+          if (props.message === "No text from file to be extracted"){
+            toast.warning("No Text can be extracted. Try another file");
+            //TODO: Remove the file 
+          }else{
+            navigate('/dummy', {state: props});
+          }
+      } catch (error) {
+          toast.error("Error extracting Text");
+      }
     }
-  };
+  }
+
 
   // Handle file edit (trigger file input dialog)
   const handleEditFile = () => {

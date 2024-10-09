@@ -1,40 +1,48 @@
 import React, { useState } from 'react';
 import './LoginPage.css'; // Import the CSS for styling
 import axios from 'axios';
+import {  useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
+  const [userEcode, setUserEcode] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    const loginData = {
+      user_Ecode: userEcode,
+      password: password
+    };
+
     try {
-      const response = await axios.post('http://localhost:5000/login', {
-        username,
-        password
+      // Send POST request to the Flask API using axios
+      const response = await axios.post('http://localhost:5000/user/login', loginData, {
+        headers: { 'Content-Type': 'application/json' },
       });
 
-      // Save the JWT token to localStorage or cookies
-      localStorage.setItem('token', response.data.access_token);
+      if (response.data.message === "Success") {
+        toast.success('Login successful');
+        console.log("Login successful:", response.data);
 
-      // Redirect user to a protected route after successful login
-      window.location.href = '/protected';  // Change to your protected route
-
-      // For every request to a protected route, include the JWT token in the Authorization header
-      const token = localStorage.getItem('token');
-      console.log(token);
-      const response2 = await axios.get('http://localhost:5000/auth/protected', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-    } catch (err) {
-      console.error(err);
-      setError('Invalid username or password');
+        // Redirect to another page after successful login (e.g., dashboard)
+        navigate('/',{state: response.data});
+      } else{
+        toast.warning(response.data.message||"Failed")
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      setError('Invalid Ecode or password.');
+      toast.error('Login failed');
     }
   };
+
+  
 
   return (
     <div className="login-page">
@@ -58,8 +66,8 @@ const LoginPage = () => {
             type="text"
             placeholder="Email / Username"
             className="input-field"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={userEcode}
+            onChange={(e) => setUserEcode(e.target.value)}
             required
           />
 
@@ -90,6 +98,7 @@ const LoginPage = () => {
           <button className="login-button" type="submit">Login</button>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
