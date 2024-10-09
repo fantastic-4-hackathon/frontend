@@ -2,35 +2,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff; /* Change to white */
-  padding: 20px 40px; /* Adjust padding for a cleaner look */
-  border-bottom: 2px solid #e0e0e0; /* Add subtle border for separation */
+  background-color: #ffffff;
+  padding: 10px 20px; /* Reduced padding */
+  border-bottom: 2px solid #e0e0e0;
+  max-width: 1200px; /* Constrain max-width */
+  margin: 0 auto; /* Center align */
+  width: 100%;
 }
 
 .logo img {
-  width: 50px; /* Increase logo size */
-}
-
-.nav a {
-  margin: 0 20px;
-  text-decoration: none;
-  color: #007bff; /* Change link color to match Sanlam's blue */
-  font-weight: 500; /* Add some boldness */
-  font-size: 18px;
-}
-
-.nav a:hover {
-  text-decoration: underline; /* Add hover effect */
+  width: 40px; /* Slightly smaller logo */
 }
 
 .user-profile img {
-  width: 40px;
-  height: 40px;
+  width: 30px; /* Adjust profile image */
+  height: 30px;
   border-radius: 50%;
 }
 
-.user-profile {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
+body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
