@@ -7,14 +7,14 @@ import 'react-toastify/dist/ReactToastify.css';
 const Dummy = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { text, message } = location.state || {
-        text: "No text provided",
-        message: "No message provided",
+    const { sumText, description} = location.state || {
+        sumText: "No text provided",
+        description: "No message provided",
 
     };
     
-    const [summary, setSummary] = useState('');
-    const prompt = text;
+    const [summary, setSummary] = useState(sumText);
+    const prompt = description;
 
     const handleFetchSummary = async () => {
         const apiKey = process.env.REACT_APP_OPENAI_API_KEY; 
@@ -35,7 +35,7 @@ const Dummy = () => {
         <div>
             <h1>Dummy</h1>
 
-            <p>{text}</p>
+            <p>{description}</p>
 
             <button onClick={handleFetchSummary}>Get Summary</button>
             {summary && <p>Summary: {summary}</p>}
