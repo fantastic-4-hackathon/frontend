@@ -4,7 +4,7 @@ import FileUpload from './components/UploadPage/FileUpload';
 import Footer from './components/UploadPage/Footer';
 import './App.css';
 import LoginPage from './components/LoginPage/LoginPage';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dummy from './components/Dummy';
 import WhatsAppMessage from './components/WhatsAppMessage';
 
