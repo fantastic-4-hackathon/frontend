@@ -31,6 +31,7 @@ const LoginPage = () => {
         console.log("Login successful:", response.data);
 
         // Redirect to another page after successful login (e.g., dashboard)
+        // setName(response.data.name + ' ' + response.data.surname)
         navigate('/',{state: response.data});
       } else{
         toast.warning(response.data.message||"Failed")
