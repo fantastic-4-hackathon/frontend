@@ -16,11 +16,12 @@ const Dummy = () => {
     const prompt = text;
 
     const handleFetchSummary = async () => {
-        const apiKey = process.env.REACT_APP_OPENAI_API_KEY_1; // Replace with your actual API key
+        const apiKey = process.env.REACT_APP_OPENAI_API_KEY; 
     
         try {
             const result = await fetchSummary(prompt, apiKey);
             setSummary(result);
+            toast.success("Summary Generated");
         } catch (error) {
             toast.error(error.message || 'Failed to fetch summary. Please try again.');
             console.error(error);
