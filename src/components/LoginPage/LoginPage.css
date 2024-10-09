@@ -5,12 +5,12 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    background-image: url('background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     height: 100%;
-    min-height: 100vh;
-    background-image: url('./background.png');
-    background-size: cover; 
-    background-position: center; 
-    background-attachment: fixed;
+    margin: 0;
   }
   
   /* Company Logo Styling */

@@ -31,6 +31,7 @@ const LoginPage = () => {
         console.log("Login successful:", response.data);
 
         // Redirect to another page after successful login (e.g., dashboard)
+        // setName(response.data.name + ' ' + response.data.surname)
         navigate('/',{state: response.data});
       } else{
         toast.warning(response.data.message||"Failed")
@@ -64,7 +65,7 @@ const LoginPage = () => {
           {/* Email / Username Input */}
           <input
             type="text"
-            placeholder="Email / Username"
+            placeholder="Username"
             className="input-field"
             value={userEcode}
             onChange={(e) => setUserEcode(e.target.value)}

@@ -1,193 +1,149 @@
-/* Body styling */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif; 
-  background-image: url('./background.png'); 
-  width: 100%;
-  background-size: cover; 
+  background-image: url('background.png');
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  height: 100%;
+  margin: 0;
 }
 
-/* Container styling */
 .file-upload-container {
-  width: 80%; 
-  max-width: 800px; 
-  text-align: left; 
-  margin: 0 auto; 
-  padding: 20px; 
-  background: rgba(255, 255, 255, 0.8); 
-  border-radius: 10px; 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Page heading */
 h1 {
-  color: #007bff;
+  text-align: center;
   margin-bottom: 10px;
 }
 
-/* Page description */
-p {
-  margin-bottom: 20px;
-  font-size: 16px;
-  color: #333;
-}
-
-/* Subheadings */
 h2 {
-  color: #333;
+  margin-top: 20px;
   margin-bottom: 10px;
-  font-size: 18px;
-  text-align: left;
 }
 
-/* Segment dropdowns styling */
 .segment-dropdowns {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
-/* Dropdown container */
 .dropdown {
   flex: 1;
-  margin-right: 10px;
-}
-
-.dropdown label {
-  display: block;
-  margin-bottom: 5px;
-  color: #333;
-}
-
-/* Dropdown select styling */
-.dropdown select {
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
-  appearance: none; /* Hide the default arrow */
-  font-size: 16px;
-  color: #999;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.dropdown select option {
-  color: #333;
-}
-
-/* Focused state for dropdown */
-.dropdown select:focus {
-  border-color: #007bff;
-  color: #333; 
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-}
-
-/* Dropdown arrow */
-.dropdown {
   position: relative;
 }
 
-.dropdown:after {
-  content: '▼'; /* Custom dropdown arrow */
-  font-size: 12px;
-  color: #333;
+.floating-label {
   position: absolute;
-  top: 50%;
-  right: 16px;
-  transform: translateY(-50%);
+  left: 12px;
+  top: 10px;
+  transition: all 0.2s ease;
+  color: #999;
+  pointer-events: none;
 }
 
-/* Textarea for description */
-.description-textarea {
-  width: 97%;
-  height: 100px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  resize: none;
+.floating-label.has-value {
+  top: 1px;
+  font-size: 12px;
+  color: #007BFF;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
   font-size: 16px;
-  color: #333;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #007BFF;
+  border-radius: 4px;
+  appearance: none;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
 }
 
-/* File upload box styling */
+select:focus {
+  border-color: #0056b3;
+}
+
+.reset-icon {
+  font-size: 24px;
+  color: #007BFF;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
 .file-upload-box {
-  border: 2px dashed #ccc;
+  border: 2px dashed #007BFF;
   border-radius: 8px;
   padding: 20px;
+  text-align: center;
   cursor: pointer;
-  position: relative;
-  transition: border-color 0.3s ease;
-  background-color: #f9f9f9;
+  transition: background-color 0.3s;
 }
 
-.file-upload-box.disabled {
-  pointer-events: none; /* Prevent interactions when a file is uploaded */
-  opacity: 0.6; /* Make it look disabled */
+.file-upload-box:hover {
+  background-color: #e7f1ff;
 }
 
-/* File upload label */
 .file-upload-label {
-  color: #007bff;
-  font-size: 16px;
-  cursor: pointer;
+  font-size: 18px;
+  color: #007BFF;
 }
 
-/* File preview styling */
 .file-preview {
-  margin-top: 20px;
-  text-align: left;
-}
-
-.file-preview p {
-  margin: 0;
-}
-
-/* Progress bar styling */
-progress {
-  width: 100%;
-  height: 20px;
-  margin: 10px 0;
-}
-
-/* File actions icons styling */
-.file-actions {
-  display: flex;
-  justify-content: flex-start;
   margin-top: 10px;
 }
 
+.file-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .file-action-icon {
-  cursor: pointer;
   font-size: 20px;
-  color: #007bff;
-  margin-right: 15px;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 .file-action-icon:hover {
-  color: #0056b3; /* Darken on hover */
+  color: #007BFF;
 }
 
-/* Extract text button styling */
-.extract-text-button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.description-textarea {
+  width: 96%;
+  height: 100px;
+  padding: 12px;
+  border: 1px solid #007BFF;
+  border-radius: 4px;
+  margin-bottom: 20px;
   font-size: 16px;
+  resize: none;
 }
 
-.extract-text-button:hover {
-  background-color: #0056b3; /* Darken on hover */
+.extract-button {
+  padding: 12px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  display: block;  
+  margin: 0 auto;  
+}
+
+.extract-button:hover:not(.disabled) {
+  background-color: #0056b3;
+}
+
+.extract-button.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }

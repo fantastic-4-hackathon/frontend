@@ -3,11 +3,10 @@
   justify-content: space-between;
   align-items: center;
   background-color: #f8f8f8;
-  padding: 10px 20px; /* Reduced padding */
+  padding: 10px 30px;
   border-top: 2px solid #e0e0e0;
-  max-width: 1200px; /* Constrain max-width */
-  margin: 0 auto;
-  width: 100%;
+  width: 100%; 
+  margin: 0; 
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -17,6 +16,7 @@
 
 .footer-left img {
   width: 100px; /* Slightly smaller logo */
+  padding: 20px;
 }
 
 .footer-center p {

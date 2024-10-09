@@ -1,36 +1,30 @@
-import React from 'react';
-import Header from './components/UploadPage/Header';
-import FileUpload from './components/UploadPage/FileUpload';
-import Footer from './components/UploadPage/Footer';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import Header from './components//UploadPage/Header';
+import Footer from './components/UploadPage/Footer'; 
+import FileUpload from './components/UploadPage/FileUpload'; 
+import LoginPage from './components/LoginPage/LoginPage'; 
+import Dummy from './components/Dummy'; 
+import WhatsAppMessage from './components/WhatsAppMessage'; 
 import './App.css';
-import LoginPage from './components/LoginPage/LoginPage';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Dummy from './components/Dummy';
-import WhatsAppMessage from './components/WhatsAppMessage';
-
-const About = () => <h2>About Page</h2>;
-const Contact = () => <h2>Contact Page</h2>;
 
 function App() {
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
 
   return (
-    <Router>
-      <div className='App'>
-        <Header />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<FileUpload />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/dummy" element={<Dummy />} />
-            <Route path="/whatsapp" element={<WhatsAppMessage /> } />
-            <Route path="*" element={<h2>404 Not Found</h2>} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <div className='App'>
+      {!isLoginPage && <Header/>}
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/fileupload" element={<FileUpload />} />
+          <Route path="/dummy" element={<Dummy />} />
+          <Route path="/whatsapp" element={<WhatsAppMessage />} />
+          <Route path="*" element={<h2>404 Not Found</h2>} />
+        </Routes>
+      </main>
+      {!isLoginPage && <Footer />}
+    </div>
   );
 }
 

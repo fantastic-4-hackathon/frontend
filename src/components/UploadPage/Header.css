@@ -3,19 +3,18 @@
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 10px 20px; /* Reduced padding */
+  padding: 10px 20px;
   border-bottom: 2px solid #e0e0e0;
-  max-width: 1200px; /* Constrain max-width */
-  margin: 0 auto; /* Center align */
-  width: 100%;
+  width: 100%; /* Ensures full width */
+  margin: 0; /* Removes auto margins that center it */
 }
 
 .logo img {
-  width: 40px; /* Slightly smaller logo */
+  width: 40px; 
 }
 
 .user-profile img {
-  width: 30px; /* Adjust profile image */
+  width: 30px;
   height: 30px;
   border-radius: 50%;
 }
