@@ -97,7 +97,8 @@ const FileUpload = () => {
       } catch (error) {
           toast.error("Error extracting Text");
       }
-
+    }
+  }
 
   // Handle file edit (trigger file input dialog)
   const handleEditFile = () => {
@@ -211,4 +212,4 @@ const FileUpload = () => {
   );
 };
 
-export default FileUpload;
+export default FileUpload
