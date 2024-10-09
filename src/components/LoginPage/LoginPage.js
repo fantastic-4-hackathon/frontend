@@ -56,7 +56,7 @@ const LoginPage = () => {
           {/* Email / Username Input */}
           <input
             type="text"
-            placeholder="Email / Username"
+            placeholder="Username"
             className="input-field"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
