@@ -3,10 +3,18 @@ import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { extractText } from '../../API/extractText';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './FileUpload.css';
 
 const FileUpload = () => {
+  const location = useLocation();
+  const { name, surname, user_id } = location.state || {
+    name: "No text provided",
+    surname: "No message provided",
+    user_id: "No user_id provided"
+};
+
+
   // State for the dropdown selections
   const [education, setEducation] = useState('');
   const [age, setAge] = useState('');
