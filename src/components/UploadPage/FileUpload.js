@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FaEdit, FaTrashAlt, FaUndoAlt } from 'react-icons/fa';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { extractText } from '../../API/extractText';
+import { fetchSummary} from '../../API/fetchSummary';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './FileUpload.css';
 
@@ -14,12 +15,48 @@ const FileUpload = () => {
     user_id: "No user_id provided"
 };
 
-
   // State for the dropdown selections
   const [education, setEducation] = useState('');
   const [age, setAge] = useState('');
-  const [persona, setPersona] = useState('');
+  const [persona, setPersona] = useState({});
+  const [personas, setPersonas] = useState([]);
+  const [selectedPersonaId, setSelectedPersonaId] = useState("");
 
+  // Storing the segment selection values
+  useEffect(() => {
+    if (age) {
+      console.log('Age:', age);
+    }
+  }, [age]);
+  
+  useEffect(() => {
+    if (education) {
+      console.log('Education:', education);
+    }
+  }, [education]);
+  
+  useEffect(() => {
+    if (persona) {
+      console.log('Persona:', persona);
+    }
+  }, [persona]);  
+
+  useEffect(() => {
+    if (!age && !education && !persona) {
+      console.clear(); // This will clear the console
+      console.log('Selections have been reset.');
+    }
+  }, [age, education, persona]);
+
+  // Fetch all personas when the component mounts
+  useEffect(() => {
+    fetch("/persona/")
+      .then(response => response.json())
+      .then(data => setPersonas(data))
+      .catch(error => console.error("Error fetching personas:", error));
+  }, []);
+
+  
   // State for file upload
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(0);
@@ -58,6 +95,21 @@ const FileUpload = () => {
     }
   };
 
+  // Handle generate whatsapp message
+  const handleFetchSummary = async () => {
+    const apiKey = process.env.REACT_APP_OPENAI_API_KEY; 
+
+    try {
+        const sumText = await fetchSummary(description, apiKey);
+        // setSummary(sumText);
+        toast.success("Summary Generated");
+        navigate('/dummy', {state: {sumText, description,age,education}});
+    } catch (error) {
+        toast.error(error.message || 'Failed to fetch summary. Please try again.');
+        console.error(error);
+    }
+};
+
   // Handle the file input change event
   const handleInputChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -95,7 +147,8 @@ const FileUpload = () => {
         if (props.message === "No text from file to be extracted") {
           toast.warning("No Text can be extracted. Try another file");
         } else {
-          navigate('/dummy', { state: props });
+          setDescription(props.text)
+          // navigate('/dummy', { state: props });
         }
       } catch (error) {
         toast.error("Error extracting Text");
@@ -128,7 +181,8 @@ const FileUpload = () => {
   const resetAllSelections = () => {
     setEducation('');
     setAge('');
-    setPersona('');
+    setPersona({});
+    setSelectedPersonaId()
     setIsPersonaDisabled(false);
     setIsAgeEducationDisabled(false);
   };
@@ -152,9 +206,16 @@ const FileUpload = () => {
     }
   };
   
-  const handlePersonaChange = (e) => {
-    setPersona(e.target.value);
-    if (e.target.value) {
+  const handlePersonaChange = (id) => {
+    setSelectedPersonaId(id)
+    fetch(`/persona/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        setPersona(data);
+      })
+      .catch(error => console.error("Error fetching persona details:", error));
+ 
+    if (id) {
       setIsAgeEducationDisabled(true);
     } else {
       setIsAgeEducationDisabled(false);
@@ -217,7 +278,7 @@ const FileUpload = () => {
           <label htmlFor="persona" className={`floating-label ${persona ? 'has-value' : ''}`}>
             Persona
           </label>
-          <select
+          {/* <select
             id="persona"
             value={persona}
             onChange={handlePersonaChange}
@@ -228,23 +289,23 @@ const FileUpload = () => {
             <option value="sandra">Sandra</option>
             <option value="refilwe">Refilwe</option>
             <option value="thabiso">Thabiso</option>
-          </select>
+          </select> */}
+
+          <select onChange={(e) => handlePersonaChange(e.target.value)} value={selectedPersonaId}>
+          <option value="" disabled>Select Persona</option>
+          {personas.map((persona) => (
+            <option key={persona.persona_id} value={persona.persona_id}>
+              {persona.name}
+            </option>
+          ))}
+        </select>
         </div>
 
         {/* Reset button */}
         <FaUndoAlt className="reset-icon" title="Reset All" onClick={resetAllSelections} />
       </div>
 
-      {/* Textarea for description */}
-      <h2>Provide text or upload a file to summarize content </h2>
-      <textarea
-        className="description-textarea"
-        placeholder="Describe your issue (3000 character limit)"
-        maxLength={3000}
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      ></textarea>
-
+      <h2>Upload a file to extract text, edit text and summarize content </h2>
       {/* File upload component */}
       <div
         className={`file-upload-box ${isFileUploaded ? 'disabled' : ''}`}
@@ -276,6 +337,17 @@ const FileUpload = () => {
         </div>
       )}
       <br></br>
+
+      {/* Textarea for description */}
+      <textarea
+        className="description-textarea"
+        placeholder="Extracted text to review and edit prior to summary will be here..."
+        maxLength={3000}
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      ></textarea>
+
+      <br></br>
       {/* Show Extract Text button if file is uploaded or description is at least 50 characters */}
       {(file && progress === 100) || (description && description.length >= 50) ? (
         <button onClick={handleExtractText} className="extract-button">
@@ -286,6 +358,11 @@ const FileUpload = () => {
           Extract Text
         </button>
       )}
+      <br></br>
+      <button onClick={handleFetchSummary} className="extract-button">
+          Generate Text
+        </button>
+        <ToastContainer />
     </div>
   );
 };
