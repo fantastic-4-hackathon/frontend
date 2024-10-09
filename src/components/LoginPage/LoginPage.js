@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './LoginPage.css'; // Import the CSS for styling
 import axios from 'axios';
-import logo from './logo.png';
 
 
 const LoginPage = () => {
@@ -42,7 +41,7 @@ const LoginPage = () => {
       {/* Company Logo */}
 
       <img 
-        src={logo} 
+        src='./images/logo.png'
         alt="Company Logo" 
         className="company-logo" 
       />

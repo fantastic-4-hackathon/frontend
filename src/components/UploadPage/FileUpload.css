@@ -1,9 +1,25 @@
+/* Body styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif; 
+  background-image: url('./background.png'); 
+  width: 100%;
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 /* Container styling */
 .file-upload-container {
-  width: 80%;
-  max-width: 600px;
-  text-align: center;
-  margin: 0 auto;
+  width: 80%; 
+  max-width: 800px; 
+  text-align: left; 
+  margin: 0 auto; 
+  padding: 20px; 
+  background: rgba(255, 255, 255, 0.8); 
+  border-radius: 10px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
 }
 
 /* Page heading */
@@ -55,15 +71,20 @@ h2 {
   background-color: #f9f9f9;
   appearance: none; /* Hide the default arrow */
   font-size: 16px;
-  color: #333;
+  color: #999;
   cursor: pointer;
   transition: border-color 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.dropdown select option {
+  color: #333;
+}
+
 /* Focused state for dropdown */
 .dropdown select:focus {
   border-color: #007bff;
+  color: #333; 
   outline: none;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
@@ -85,9 +106,9 @@ h2 {
 
 /* Textarea for description */
 .description-textarea {
-  width: 100%;
+  width: 97%;
   height: 100px;
-  padding: 12px;
+  padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
   resize: none;

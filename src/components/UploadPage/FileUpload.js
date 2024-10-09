@@ -111,9 +111,8 @@ const FileUpload = () => {
       <h2>Segment</h2>
       <div className="segment-dropdowns">
         <div className="dropdown">
-          <label htmlFor="education">Education Level</label>
           <select id="education" value={education} onChange={(e) => setEducation(e.target.value)}>
-            <option value=""></option>
+            <option value="" disabled>Select Education Level</option>
             <option value="no-schooling">No Schooling</option>
             <option value="no-matric">No Matric</option>
             <option value="matric">Matric</option>
@@ -125,9 +124,8 @@ const FileUpload = () => {
         </div>
 
         <div className="dropdown">
-          <label htmlFor="age">Age</label>
           <select id="age" value={age} onChange={(e) => setAge(e.target.value)}>
-            <option value=""></option>
+            <option value="" disabled>Select Age</option>
             <option value="20-49">20-49</option>
             <option value="50+">50+</option>
             <option value="unknown">Unknown</option>
@@ -135,9 +133,8 @@ const FileUpload = () => {
         </div>
 
         <div className="dropdown">
-          <label htmlFor="persona">Persona</label>
           <select id="persona" value={persona} onChange={(e) => setPersona(e.target.value)}>
-            <option value=""></option>
+            <option value="" disabled>Select Persona</option>
             <option value="nick">Nick</option>
             <option value="sandra">Sandra</option>
             <option value="refilwe">Refilwe</option>
