@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './LoginPage.css'; // Import the CSS for styling
 import axios from 'axios';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const LoginPage = () => {
@@ -30,10 +30,15 @@ const LoginPage = () => {
         toast.success('Login successful');
         console.log("Login successful:", response.data);
 
-        // Redirect to another page after successful login (e.g., dashboard)
-        navigate('/',{state: response.data});
-      } else{
-        toast.warning(response.data.message||"Failed")
+        // Store token in sessionStorage
+        sessionStorage.setItem('token', response.data.token);
+
+        // setName(response.data.name + ' ' + response.data.surname)
+
+        // Redirect to another page (protected route) after successful login (e.g., dashboard)
+        navigate('/fileupload', { state: response.data });
+      } else {
+        toast.warning(response.data.message || "Failed")
       }
     } catch (error) {
       console.error("Error during login:", error);
@@ -42,16 +47,16 @@ const LoginPage = () => {
     }
   };
 
-  
+
 
   return (
     <div className="login-page">
       {/* Company Logo */}
 
-      <img 
+      <img
         src='./images/logo.png'
-        alt="Company Logo" 
-        className="company-logo" 
+        alt="Company Logo"
+        className="company-logo"
       />
 
       {/* Login Container */}
@@ -64,7 +69,7 @@ const LoginPage = () => {
           {/* Email / Username Input */}
           <input
             type="text"
-            placeholder="Email / Username"
+            placeholder="Username"
             className="input-field"
             value={userEcode}
             onChange={(e) => setUserEcode(e.target.value)}

@@ -1,10 +1,15 @@
 import React from 'react';
 import './Header.css'; 
 import Avatar from './Avatar'; // Import the Avatar component
+import { useLocation } from 'react-router-dom';
 
 const Header = () => {
-  const userName = "John"; // Replace with dynamic data as needed
-  const userSurname = "Doe"; // Replace with dynamic data as needed
+  const location = useLocation();
+  const { name, surname } = location.state || {
+    name: "No text provided",
+    surname: "No message provided",
+    user_id: "No user_id provided"
+};
 
   return (
     <header className="header">
@@ -15,7 +20,7 @@ const Header = () => {
         {/* Navigation items can be added here */}
       </nav>
       <div className="user-profile">
-        <Avatar name={userName} surname={userSurname} /> {/* Include Avatar here */}
+        <Avatar name={name} surname={surname} /> {/* Include Avatar here */}
       </div>
     </header>
   );
