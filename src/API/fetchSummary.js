@@ -1,6 +1,6 @@
 const DEFAULT_TEMPERATURE = 0.7; // Hardcoded temperature
 
-export const fetchSummary = async (prompt, apiKey) => {
+export const fetchSummary = async (prompt, apiKey, systemContent = null) => {
     const requestOptions = {
         method: 'POST',
         headers: {
@@ -12,7 +12,7 @@ export const fetchSummary = async (prompt, apiKey) => {
             messages: [
                 {
                     role: 'system',
-                    content: "Summarize the following text into a concise WhatsApp marketing message with relevant emojis and NO hashtags, keeping the same tone:",
+                    content: systemContent || "Summarize the following text into a concise WhatsApp marketing message with relevant emojis and NO hashtags, keeping the same tone:",
                 },
                 { role: 'user', content: prompt },
             ],
