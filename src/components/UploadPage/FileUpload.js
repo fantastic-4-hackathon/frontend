@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { extractText } from '../../API/extractText';
+import { useNavigate } from 'react-router-dom';
 import './FileUpload.css';
 
 const FileUpload = () => {
@@ -10,6 +12,8 @@ const FileUpload = () => {
 
   const notifySuccess = (message) => toast.success(message);
   const notifyError = (message) => toast.error(message);
+
+  const navigate = useNavigate();
 
   const handleFileChange = (selectedFile) => {
     if (selectedFile && (selectedFile.type === 'application/pdf' || selectedFile.name.endsWith('.msg'))) {
@@ -56,10 +60,23 @@ const FileUpload = () => {
     handleFileChange(droppedFile);
   };
 
-  const handleExtractText = () => {
+  const handleExtractText = async () => {
     if (file) {
       console.log('Extracting text from:', file.name);
       toast.info(`Extracting text from ${file.name}`);
+      
+      try {
+          const props = await extractText(file);
+          console.log(props.message);
+          if (props.message === "No text from file to be extracted"){
+            toast.warning("No Text can be extracted. Try another file");
+            //TODO: Remove the file 
+          }else{
+            navigate('/dummy', {state: props});
+          }
+      } catch (error) {
+          toast.error("Error extracting Text");
+      }
     }
   };
 
