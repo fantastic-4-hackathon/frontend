@@ -8,6 +8,7 @@
    - `REACT_APP_ACCOUNT_SID` This is for Twilio Account ID
    - `REACT_APP_AUTH_TOKEN` This is for Twilio APP Account ID
    - `REACT_APP_FROM_WHATSAPP_NUMBER` This is for the whatsapp number that will send the messages
+3. Run `npm start` 
 
 
 
