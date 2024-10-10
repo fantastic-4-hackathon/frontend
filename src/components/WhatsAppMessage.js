@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './WhatsAppMessage.css'
 
 const WhatsAppMessage = () => {
   const location = useLocation();
@@ -79,12 +80,12 @@ const WhatsAppMessage = () => {
         value={messageContent}
         onChange={(e) => setMessageContent(e.target.value)}
       />
-      <button onClick={sendMessageToAll}>Send WhatsApp Message to All</button>
+      <button onClick={sendMessageToAll}>Send WhatsApp Message</button>
 
-      {messageStatus && <p>{messageStatus}</p>}
+      {/* {messageStatus && <p>{messageStatus}</p>} */}
       {sentNumbers.length > 0 && (
         <div>
-          <h2>Messages sent to:</h2>
+          <h2>Message sent to:</h2>
           <ul>
             {sentNumbers.map((number, index) => (
               <li key={index}>{number}</li>

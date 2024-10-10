@@ -16,8 +16,6 @@ const Footer = () => {
           All rights reserved. Sanlam Life Insurance Limited is a Licensed Financial Services Provider and a Registered Credit Provider.
         </p>
       </div>
-
-      <div className="vertical-line"></div> {/* Vertical line */}
       
       <div className="footer-column footer-right">
         <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
