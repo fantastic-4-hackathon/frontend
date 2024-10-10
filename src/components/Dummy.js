@@ -91,9 +91,7 @@ const Dummy = () => {
                 toast.error(error.message || 'Failed to fetch summary. Please try again.');
                 console.error(error);
             }
-        }
-    
-        
+        }     
     };
 
     return (
