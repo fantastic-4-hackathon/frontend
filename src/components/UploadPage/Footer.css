@@ -24,9 +24,11 @@
   color: #888888;
 }
 
+.footer-right { margin-right: 60px;}
+
 .footer-right a {
   margin: 0 8px;
-  color: #007bff;
+  color: #0075c9;
   font-size: 20px; /* Slightly smaller icons */
 }
 
@@ -36,10 +38,10 @@
 
 /* Vertical line between the columns */
 .vertical-line {
-  width: 1px;
+  width: 2px;
   background-color: #e0e0e0;
   height: 40px; /* Adjusted height */
-  margin: 0 15px;
+  margin: 0 0px;
 }
 
 body {

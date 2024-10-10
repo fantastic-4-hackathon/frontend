@@ -1,17 +1,18 @@
-import React, { useState   } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { fetchSummary} from '../API/fetchSummary'
+import { fetchSummary } from '../API/fetchSummary';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
+import 'react-toastify/dist/ReactToastify.css';
+import './Dummy.css'; // Import the CSS file
 
 const Dummy = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { sumText, description} = location.state || {
+    const { sumText, description } = location.state || {
         sumText: "No text provided",
         description: "No message provided",
-
     };
+
     const isPersona = false;
     const age =  '50+';
     const education = 'No Schooling';
@@ -90,20 +91,15 @@ const Dummy = () => {
                 toast.error(error.message || 'Failed to fetch summary. Please try again.');
                 console.error(error);
             }
-        }
-    
-        
+        }     
     };
-    
 
     return (
-        <div>
-            <h1>Dummy</h1>
-
-            <p>{description}</p>
-
-            <button onClick={handleFetchSummary}>Get Summary</button>
-            {summary && <p>Summary: {summary}</p>}
+        <div className="dummy-container">
+            <h1>Generate Marketing Content</h1>
+            {/* <p className="description">{description}</p> */}
+            {summary && <p className="summary-text">{summary}</p>}
+            <button className="fetch-button" onClick={handleFetchSummary}>Get Summary</button>
             <ToastContainer />
         </div>
     );    

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import './LoginPage.css'; // Import the CSS for styling
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { TextField, Button, Box, Typography, Snackbar, Alert } from '@mui/material'; // Import Snackbar and Alert
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import './LoginPage.css';
 
 const LoginPage = () => {
   const [userEcode, setUserEcode] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(false); // Use a boolean for error visibility
+  const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -17,92 +18,97 @@ const LoginPage = () => {
 
     const loginData = {
       user_Ecode: userEcode,
-      password: password
+      password: password,
     };
 
     try {
-      // Send POST request to the Flask API using axios
       const response = await axios.post('http://localhost:5000/user/login', loginData, {
         headers: { 'Content-Type': 'application/json' },
       });
 
       if (response.data.message === "Success") {
         toast.success('Login successful');
-        console.log("Login successful:", response.data);
-
-        // Store token in sessionStorage
         sessionStorage.setItem('token', response.data.token);
-
-        // setName(response.data.name + ' ' + response.data.surname)
-
-        // Redirect to another page (protected route) after successful login (e.g., dashboard)
         navigate('/fileupload', { state: response.data });
       } else {
-        toast.warning(response.data.message || "Failed")
+        setError(true); // Display the snackbar for error
+        setErrorMsg(response.data.message || "Login failed");
       }
     } catch (error) {
-      console.error("Error during login:", error);
-      setError('Invalid Ecode or password.');
-      toast.error('Login failed');
+      setError(true);
+      setErrorMsg('Invalid Ecode or password.');
     }
   };
 
-
-
   return (
     <div className="login-page">
-      {/* Company Logo */}
+      <Box className="login-container" component="form" onSubmit={handleLogin}>
+        <img
+          src='./images/logo.png'
+          alt="Company Logo"
+          className="company-logo"
+        />
+        <Typography variant="h5" className="login-title">Log in to your account</Typography>
+        
+        {/* Username Input Field */}
+        <TextField
+          label="Username"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={userEcode}
+          onChange={(e) => setUserEcode(e.target.value)}
+          required
+        />
 
-      <img
-        src='./images/logo.png'
-        alt="Company Logo"
-        className="company-logo"
-      />
+        {/* Password Input Field */}
+        <TextField
+          label="Password"
+          type="password"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-      {/* Login Container */}
-      <div className="login-container">
-        <h2 className="login-title">Log in to your account</h2>
+        <br></br>
 
-        {/* Maybe add DSM Component for error above login stuff */}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <form onSubmit={handleLogin}>
-          {/* Email / Username Input */}
-          <input
-            type="text"
-            placeholder="Username"
-            className="input-field"
-            value={userEcode}
-            onChange={(e) => setUserEcode(e.target.value)}
-            required
-          />
+        {/* Terms and Conditions */}
+        <Typography variant="body2" className="terms-text">
+          By continuing, you agree to our
+          <a
+            href="https://www.sanlam.com/terms-of-use"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="terms-link"
+          >
+            Terms and Conditions
+          </a>
+        </Typography>
 
-          {/* Password Input */}
-          <input
-            type="password"
-            placeholder="Password"
-            className="input-field"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+        <br></br>
+      
+        {/* Login Button */}
+        <Button 
+          variant="contained" 
+          color="primary" 
+          fullWidth 
+          type="submit" 
+          className="login-button"
+        >
+          Login
+        </Button>
+      </Box>
 
-          {/* Terms and Conditions */}
-          <p className="terms-text">
-            By continuing, you are agreeing to our
-            <a
-              href="https://www.sanlam.com/terms-of-use"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="terms-link"
-            >
-              Terms and Conditions
-            </a>
-          </p>
+      {/* Snackbar for Error Message */}
+      <Snackbar open={error} autoHideDuration={6000} onClose={() => setError(false)}>
+        <Alert onClose={() => setError(false)} severity="error" sx={{ width: '100%' }}>
+          {errorMsg}
+        </Alert>
+      </Snackbar>
 
-          {/* Login Button */}
-          <button className="login-button" type="submit">Login</button>
-        </form>
-      </div>
       <ToastContainer />
     </div>
   );

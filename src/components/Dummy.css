@@ -1,0 +1,72 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.dummy-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* .description {
+    font-size: 18px;
+    color: #666;
+    margin: 20px 0;
+} */
+
+.fetch-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.fetch-button:hover {
+    background-color: #2980b9;
+}
+
+.summary-text {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 20px;
+    color: #444;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .dummy-container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    /* .description {
+        font-size: 16px;
+    } */
+
+    .fetch-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
